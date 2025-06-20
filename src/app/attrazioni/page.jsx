@@ -99,10 +99,11 @@ export default function AttractionsPage() {
 </section>
 
 
-        {/* FILTRI & CONTENUTO */}
+       {/* FILTRI & CONTENUTO */}
         <section className="py-12 bg-black px-4">
           <Tabs defaultValue="tutte" value={activeCategory} onValueChange={setActiveCategory}>
-            <TabsList className="grid grid-cols-2 md:grid-cols-5 gap-2 bg-white/10 border border-white/20 rounded-xl p-2 mb-10">
+            <TabsList className="mx-auto grid grid-cols-2 md:grid-cols-5 gap-2 bg-white/10 border border-white/20 rounded-xl p-2 mb-10">
+
               {[
                 { id: "tutte", label: "🎪 Tutte" },
                 { id: "avventura", label: "⚡ Avventura" },
@@ -134,6 +135,7 @@ export default function AttractionsPage() {
           </Tabs>
         </section>
       </main>
+
       <Footer />
     </div>
   )

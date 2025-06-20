@@ -117,9 +117,9 @@ export function MapInteractive({ highlightedPoints = [] }) {
   const getPointColor = (type) => {
     switch (type) {
       case "attraction":
-        return "#ef4444"
+        return "#008080"
       case "shows":
-        return "#267bf1"
+        return "#003366"
       case "service":
         return "#eab308"
       default:
@@ -379,18 +379,14 @@ export function MapInteractive({ highlightedPoints = [] }) {
               <div className="absolute inset-0 w-full h-full">
                 {/* Griglia di base */}
                 <div
-                  className="absolute inset-0 bg-green-100 dark:bg-green-900"
+                  className="absolute inset-0 bg-white dark:bg-green-900"
                   style={{ width: "100%", height: "100%" }}
                 >
                   {/* Strade principali */}
-                  <div className="absolute left-1/2 top-0 bottom-0 w-[5%] bg-gray-200 dark:bg-gray-700 -translate-x-1/2"></div>
-                  <div className="absolute top-1/2 left-0 right-0 h-[5%] bg-gray-200 dark:bg-gray-700 -translate-y-1/2"></div>
+                  <div className="absolute left-1/2 top-0 bottom-0 w-[5%] bg-neutral-300 dark:bg-gray-700 -translate-x-1/2"></div>
+                  <div className="absolute top-1/2 left-0 right-0 h-[5%] bg-neutral-300 dark:bg-gray-700 -translate-y-1/2"></div>
 
-                  {/* Lago */}
-                  <div
-                    className="absolute w-[20%] h-[15%] rounded-full bg-blue-200 dark:bg-blue-800"
-                    style={{ left: "60%", top: "30%" }}
-                  ></div>
+                 
                 </div>
 
                 {/* Aree del parco */}
@@ -508,7 +504,7 @@ export function MapInteractive({ highlightedPoints = [] }) {
                 variant="outline"
                 size="icon"
                 onClick={handleZoomIn}
-                className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white"
+                className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-black"
               >
                 <ZoomInIcon className="h-4 w-4" />
               </Button>
@@ -516,7 +512,7 @@ export function MapInteractive({ highlightedPoints = [] }) {
                 variant="outline"
                 size="icon"
                 onClick={handleZoomOut}
-                className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white"
+                className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-black"
               >
                 <ZoomOutIcon className="h-4 w-4" />
               </Button>
@@ -524,7 +520,7 @@ export function MapInteractive({ highlightedPoints = [] }) {
                 variant="outline"
                 size="icon"
                 onClick={handleReset}
-                className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white"
+                className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-black"
               >
                 <HomeIcon className="h-4 w-4" />
               </Button>
@@ -535,31 +531,19 @@ export function MapInteractive({ highlightedPoints = [] }) {
               <h3 className="font-bold text-sm mb-2">Legenda</h3>
               <div className="space-y-2 text-xs">
                 <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-red-500 mr-2 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-green-900 mr-2 flex items-center justify-center">
                     <RollercoasterIcon className="h-3 w-3 text-white" />
                   </div>
                   <span>Attrazioni</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-blue-500 mr-2 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-blue-900 mr-2 flex items-center justify-center">
                     <TheaterIcon className="h-3 w-3 text-white" />
                   </div>
                   <span>Spettacoli</span>
                 </div>
-                <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full bg-yellow-500 mr-2 flex items-center justify-center">
-                    <InfoIcon className="h-3 w-3 text-white" />
-                  </div>
-                  <span>Servizi</span>
-                </div>
+               
               </div>
-            </div>
-
-            {/* Istruzioni */}
-            <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md p-3 rounded-lg shadow-md text-xs z-10 text-grey-600">
-              <p>Clicca sui punti per vedere i dettagli</p>
-              <p>Trascina per muovere la mappa</p>
-              <p>Usa i controlli per lo zoom</p>
             </div>
           </div>
         </div>
