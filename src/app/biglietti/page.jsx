@@ -10,7 +10,7 @@ import {
   UserIcon,
   UsersIcon,
   HeartIcon,
-  SparklesIcon,
+
   StarIcon,
   ShoppingCartIcon,
   CheckCircleIcon,
@@ -131,43 +131,47 @@ export default function TicketsPage() {
     <div className="flex flex-col min-h-screen bg-gray-100 text-gray-900">
       <Navbar />
       <main className="flex-1">
-        {/* Hero */}
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-black dark:from-gray-900 dark:to-gray-800">
-          <div className="absolute inset-0 pointer-events-none">
-            <TicketIcon className="absolute top-20 left-20 w-8 h-8 text-gray-200 animate-float" />
-            <CreditCardIcon className="absolute top-32 right-32 w-6 h-6 text-gray-200 animate-float" />
-            <QrCodeIcon className="absolute bottom-40 left-40 w-10 h-10 text-gray-200 animate-float" />
-            <CalendarIcon className="absolute top-1/2 right-20 w-7 h-7 text-gray-200 animate-float" />
-            <SparklesIcon className="absolute bottom-20 right-1/4 w-9 h-9 text-gray-200 animate-float" />
-            <HeartIcon className="absolute top-1/4 left-1/3 w-6 h-6 text-gray-200 animate-float" />
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-black">
+ 
+  {/* Immagine di sfondo */}
+  <div className="absolute inset-0 z-0">
+    <img
+      src="/img/biglietti.png"
+      alt="Sfondo"
+      className="w-full h-full object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90 z-10"></div>
+  </div>
+
+  
+
+  {/* Contenuto */}
+  <div className="container px-4 py-16 relative z-30 mx-auto">
+    <div className="text-center">
+      <h1 className="text-5xl md:text-7xl  mb-6 font-black bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent animate-gradient">
+        Biglietti
+      </h1>
+      <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+        Acquista i tuoi biglietti online e accedi al parco senza fare la coda. Risparmia tempo e denaro!
+      </p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="bg-white border border-gray-200 rounded-2xl p-4 shadow hover:shadow-lg transition-all duration-300 hover:scale-105"
+          >
+            <stat.icon className="w-8 h-8 text-gray-300 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+            <div className="text-sm text-gray-500">{stat.label}</div>
           </div>
-          <div className="container px-4 py-16 relative z-10 mx-auto">
-            <div className="text-center">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-gray-700 to-gray-400 bg-clip-text text-transparent">
-                Biglietti
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-                Acquista i tuoi biglietti online e accedi al parco senza fare la coda. Risparmia tempo e denaro!
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="bg-white border border-gray-200 rounded-2xl p-4 shadow hover:shadow-lg transition-all duration-300 hover:scale-105"
-                  >
-                    <stat.icon className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                    <div className="text-sm text-gray-500">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <style jsx>{`
-            @keyframes float { 0%,100%{transform:translateY(0px) rotate(0deg);} 50%{transform:translateY(-20px) rotate(180deg);} }
-            .animate-float { animation: float 6s ease-in-out infinite; }
-          `}</style>
-        </section>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  
+</section>
+
 
         <div className="container px-4 py-8 md:px-6 md:py-12 mx-auto">
           <div className="mt-8">
@@ -201,7 +205,7 @@ export default function TicketsPage() {
                     <Card className="bg-white border border-gray-200 shadow-lg rounded-2xl">
                       <CardHeader className="bg-gray-50 rounded-t-lg">
                         <CardTitle className="text-2xl font-bold text-gray-900">
-                          🎫 Acquista biglietti
+                          Acquista biglietti
                         </CardTitle>
                         <CardDescription className="text-gray-500">
                           Seleziona il tipo di biglietto e la data della tua visita
@@ -416,7 +420,7 @@ export default function TicketsPage() {
                     <Card key={ticket.code} className="max-w-2xl mx-auto mb-6 bg-white border border-gray-200 shadow-lg rounded-2xl">
                       <CardHeader className="bg-gray-50 rounded-t-lg">
                         <CardTitle className="text-2xl font-semibold text-gray-900">
-                          🎫 Biglietto
+                          Biglietto
                         </CardTitle>
                         <CardDescription className="text-gray-500">
                           Mostra questo QR Code all&apos;ingresso del parco
@@ -450,7 +454,7 @@ export default function TicketsPage() {
                   <Card className="max-w-2xl mx-auto bg-white border border-gray-200 shadow-lg rounded-2xl">
                     <CardHeader className="bg-gray-50 rounded-t-lg">
                       <CardTitle className="text-2xl font-semibold text-gray-900">
-                        🎫 I tuoi biglietti
+                        I tuoi biglietti
                       </CardTitle>
                       <CardDescription className="text-gray-500">
                         Non hai ancora acquistato nessun biglietto

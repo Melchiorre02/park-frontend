@@ -73,44 +73,56 @@ export default function ShowsPage() {
       <Navbar />
       <main className="flex-1">
         {/* HERO */}
-        <section className="relative flex items-center justify-center min-h-[60vh] bg-gradient-to-br from-gray-50 to-black dark:from-gray-900 dark:to-gray-800 px-4 text-center">
-          <div className="space-y-6 z-10 max-w-3xl">
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent animate-gradient">
-              Spettacoli 
-            </h1>
-            <p className="text-lg text-purple-100">
-              
-            </p>
+        <section className="relative flex items-center justify-center min-h-[60vh] px-4 text-center overflow-hidden bg-black">
+  {/* Immagine di sfondo */}
+  <div className="absolute inset-0 z-0">
+    <img
+      src="/img/spettacoli.jpeg"
+      alt="Sfondo"
+      className="w-full h-full object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90 z-10"></div>
+  </div>
 
-            {/* STATISTICHE */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="bg-white/10 border border-white/10 p-4 rounded-xl backdrop-blur-sm text-center"
-                >
-                  <s.icon className="w-6 h-6 mx-auto mb-1 text-purple-300" />
-                  <div className="text-2xl font-bold">{s.value}</div>
-                  <div className="text-sm text-purple-200">{s.label}</div>
-                </div>
-              ))}
-            </div>
+  {/* Contenuto */}
+  <div className="space-y-6 z-20 max-w-3xl">
+    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent animate-gradient">
+      Spettacoli
+    </h1>
+    <p className="text-lg text-purple-100">
+      {/* Aggiungi testo se desideri */}
+    </p>
 
-            {/* RICERCA */}
-            <div className="relative max-w-md mx-auto">
-              <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-purple-300 w-5 h-5" />
-              <Input
-                placeholder="Cerca spettacoli..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-white/10 text-white border border-white/20 placeholder:text-purple-200 rounded-full h-12"
-              />
-            </div>
-          </div>
-        </section>
+    {/* STATISTICHE */}
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      {stats.map((s) => (
+        <div
+          key={s.label}
+          className="bg-white/10 border border-white/10 p-4 rounded-xl backdrop-blur-sm text-center"
+        >
+          <s.icon className="w-6 h-6 mx-auto mb-1 text-purple-300" />
+          <div className="text-2xl font-bold">{s.value}</div>
+          <div className="text-sm text-purple-200">{s.label}</div>
+        </div>
+      ))}
+    </div>
+
+    {/* RICERCA */}
+    <div className="relative max-w-md mx-auto">
+      <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-purple-300 w-5 h-5" />
+      <Input
+        placeholder="Cerca spettacoli..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="pl-10 bg-white/10 text-white border border-white/20 placeholder:text-purple-200 rounded-full h-12"
+      />
+    </div>
+  </div>
+</section>
+
 
         {/* FILTRI */}
-        <section className="py-12 px-4 max-w-7xl mx-auto">
+        <section className="py-12 px-4 max-w-7xl mx-auto ">
           <div className="flex flex-wrap gap-3 justify-center mb-8">
             {categories.map((cat) => (
               <Button

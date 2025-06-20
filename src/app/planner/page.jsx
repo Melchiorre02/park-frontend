@@ -139,39 +139,43 @@ export default function PlannerPage() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-50 to-black dark:from-gray-900 dark:to-gray-800">
       <Navbar />
       {/* Hero responsive */}
-      <section className="relative flex items-center justify-center min-h-[50vh] sm:min-h-[60vh] bg-gradient-to-br from-gray-50 to-black dark:from-gray-900 dark:to-gray-800 overflow-hidden px-2">
-        <div className="absolute inset-0 bg-dots-pattern opacity-10 animate-pulse"></div>
-        <div className="absolute inset-0 pointer-events-none">
-          {[CalendarIcon, ClockIcon, StarIcon, ZapIcon, HeartIcon].map((Icon, i) => (
-            <Icon
-              key={i}
-              className="absolute w-6 h-6 sm:w-8 sm:h-8 text-white/20 animate-bounce"
-              style={{ top: `${10 + 20 * i}%`, left: `${15 + 10 * i}%`, animationDelay: `${0.5 + i * 0.3}s` }}
-            />
-          ))}
+      <section className="relative flex items-center justify-center min-h-[50vh] sm:min-h-[60vh] overflow-hidden px-2 bg-black">
+  {/* Immagine di sfondo */}
+  <div className="absolute inset-0 z-0">
+    <img
+      src="/img/planner.jpg"
+      alt="Sfondo"
+      className="w-full h-full object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90 z-10"></div>
+  </div>
+
+  
+
+  {/* Contenuto */}
+  <div className="relative text-center z-30 text-white w-full max-w-3xl mx-auto px-2">
+    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent animate-gradient">
+      Planner
+    </h1>
+    <p className="mt-4 text-base sm:text-xl md:text-2xl text-gray-200">
+      Pianifica la tua avventura al parco in modo semplice e intuitivo
+    </p>
+    <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
+      {[
+        { label: "Elementi", value: plannedItems.length },
+        { label: "Durata", value: `${Math.floor(totalDuration / 60)}h ${(totalDuration % 60)}m` },
+        { label: "Ottimizzazione", value: "98%" },
+        { label: "Rating", value: "5★" },
+      ].map((s, i) => (
+        <div key={i} className="bg-gray-200/10 backdrop-blur-lg rounded-xl p-2 sm:p-4">
+          <div className="text-xl sm:text-2xl font-bold text-white">{s.value}</div>
+          <div className="mt-1 text-xs sm:text-sm text-gray-300">{s.label}</div>
         </div>
-        <div className="relative text-center z-10 text-white w-full max-w-3xl mx-auto px-2">
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent animate-gradient">
-            Planner Magico
-          </h1>
-          <p className="mt-4 text-base sm:text-xl md:text-2xl text-gray-200">
-            Pianifica la tua avventura al parco in modo semplice e intuitivo
-          </p>
-          <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
-            {[
-              { label: "Elementi", value: plannedItems.length },
-              { label: "Durata", value: `${Math.floor(totalDuration / 60)}h ${(totalDuration % 60)}m` },
-              { label: "Ottimizzazione", value: "98%" },
-              { label: "Rating", value: "5★" },
-            ].map((s, i) => (
-              <div key={i} className="bg-gray-200/10 backdrop-blur-lg rounded-xl p-2 sm:p-4">
-                <div className="text-xl sm:text-2xl font-bold text-white">{s.value}</div>
-                <div className="mt-1 text-xs sm:text-sm text-gray-300">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
       {/* Main responsive */}
       <main className="flex-1 bg-gradient-to-br from-gray-50 to-black dark:from-gray-900 dark:to-gray-800 py-6 sm:py-12">
         <div className="mx-auto container px-2 sm:px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">

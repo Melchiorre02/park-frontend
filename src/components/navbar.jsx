@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 
+import { useLocation } from 'react-router-dom';
 
 
 import {
@@ -23,6 +24,10 @@ import { Button } from "./ui/button"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+ 
+const location = useLocation();
+const pathname = location.pathname;
+
 
   const navItems = [
     { href: "/", label: "Home", icon: HomeIcon },
@@ -42,9 +47,7 @@ export function Navbar() {
           <a href="/" className="flex items-center gap-3 group">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-              {/* <div className="relative bg-gradient-to-r from-green-500 to-emerald-600 p-2 rounded-xl shadow-lg">
-                <RollerCoasterIcon className="h-8 w-8 text-white" />
-              </div> */}
+              
             </div>
             <div className="flex flex-col">
               <img
@@ -59,24 +62,36 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="relative group px-4 py-2 rounded-xl transition-all duration-300 hover:bg-green-50 dark:hover:bg-green-900/20"
-            >
-              <div className="flex items-center gap-2">
-                <item.icon className="h-4 w-4 text-gray-500 group-hover:text-green-600 dark:text-gray-400 dark:group-hover:text-green-400 transition-colors duration-300" />
-                <span className="text-sm font-medium text-gray-700 group-hover:text-green-700 dark:text-gray-300 dark:group-hover:text-green-300 transition-colors duration-300">
-                  {item.label}
-                </span>
-              </div>
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 group-hover:w-full transition-all duration-300 rounded-full"></div>
-            </a>
-          ))}
-        </nav>
+      {/* Desktop Navigation */}
+<nav className="hidden lg:flex items-center gap-1">
+  {navItems.map((item) => {
+    const isActive = pathname === item.href;
+
+    return (
+      <a
+        key={item.href}
+        href={item.href}
+        className="relative group px-4 py-2 rounded-xl transition-all duration-300"
+      >
+        <div className="flex items-center gap-2">
+          <item.icon
+            className={`h-4 w-4 text-gray-500 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-300 ${isActive ? 'text-black dark:text-white' : ''}`}
+          />
+          <span
+            className={`text-sm font-medium text-black dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors duration-300 ${isActive ? 'text-black dark:text-white' : ''}`}
+          >
+            {item.label}
+          </span>
+        </div>
+        <div
+          className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-black transition-all duration-300 rounded-full ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}
+        ></div>
+      </a>
+    );
+  })}
+</nav>
+
+
 
         {/* Right Section */}
         <div className="flex items-center gap-3">
@@ -110,7 +125,7 @@ export function Navbar() {
                       <a
                         key={item.href}
                         href={item.href}
-                        className="flex items-center gap-4 p-4 rounded-xl text-gray-700 hover:text-green-700 dark:text-gray-300 dark:hover:text-green-300 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 group"
+                        className="flex items-center gap-4 p-4 rounded-xl text-black  dark:text-gray-300 dark:hover:text-green-300 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 group"
                         onClick={() => setIsOpen(false)}
                       >
                         <div className="relative">
@@ -137,13 +152,7 @@ export function Navbar() {
                 </nav>
 
                 {/* Mobile Footer */}
-                <div className="pt-6 border-t border-green-200/50 dark:border-green-800/50">
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-xl">
-                    <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
-                      🎢 Benvenuto a Divertlanda!
-                    </p>
-                  </div>
-                </div>
+                
               </div>
             </SheetContent>
           </Sheet>

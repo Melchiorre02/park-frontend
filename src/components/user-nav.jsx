@@ -36,7 +36,7 @@ export function UserNav() {
         variant="outline"
         size="sm"
         onClick={() => navigate("/login")}
-        className="border-green-600 text-green-600 hover:bg-green-50 dark:border-green-400 dark:text-green-400 dark:hover:bg-green-950"
+        className=" text-black hover:bg-green-50 dark:border-green-400 dark:text-green-400 dark:hover:bg-green-950"
       >
         <UserIcon className="h-4 w-4 mr-2" />
         Accedi
@@ -48,9 +48,9 @@ export function UserNav() {
     <DropdownMenu>
       <DropdownMenuTrigger >
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-          <Avatar className="h-8 w-8">
-            <AvatarImage src={user.image || "/placeholder.svg"} alt={user.name} />
-            <AvatarFallback className="bg-green-100 text-green-600">{user.name.charAt(0)}</AvatarFallback>
+          <Avatar className="h-10 w-10">
+            
+            <AvatarFallback className="bg-black text-white">{user.name.charAt(0)}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

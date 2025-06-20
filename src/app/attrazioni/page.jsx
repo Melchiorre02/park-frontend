@@ -64,33 +64,40 @@ export default function AttractionsPage() {
       <Navbar />
       <main className="flex-1">
         {/* HERO */}
-        <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black px-4">
-          <div className="text-center space-y-6 max-w-3xl z-10">
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent animate-gradient">
-              Attrazioni
-            </h1>
-            <p className="text-lg text-gray-300">
-              Scopri tutte le esperienze emozionanti del parco. Filtra, esplora e pianifica il tuo divertimento.
-            </p>
+        <section className="relative min-h-[60vh] flex items-center justify-center px-4 overflow-hidden bg-black">
+  {/* Immagine di sfondo */}
+  <div className="absolute inset-0 z-0">
+    <img
+      src="/img/attrazioni.jpg"
+      alt="Sfondo"
+      className="w-full h-full object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90 z-10"></div>
+  </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-white">
-              <StatBox label="Totali" value={stats.total} />
-              <StatBox label="Aperte" value={stats.open} />
-              <StatBox label="Attesa Media" value={`${stats.wait} min`} />
-              <StatBox label="Popolari" value={stats.popular} />
-            </div>
+  {/* Contenuto */}
+  <div className="text-center space-y-6 max-w-3xl z-20">
+    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent animate-gradient">
+      Attrazioni
+    </h1>
+    <p className="text-lg text-gray-300">
+      Scopri tutte le esperienze emozionanti del parco. Filtra, esplora e pianifica il tuo divertimento.
+    </p>
 
-            <div className="relative max-w-md mx-auto">
-              <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 w-5 h-5" />
-              <Input
-                placeholder="Cerca attrazioni..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 bg-white/10 border border-white/20 text-white placeholder:text-white/60 rounded-full h-12"
-              />
-            </div>
-          </div>
-        </section>
+    
+
+    <div className="relative max-w-md mx-auto">
+      <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 w-5 h-5" />
+      <Input
+        placeholder="Cerca attrazioni..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="pl-12 bg-white/10 border border-white/20 text-white placeholder:text-white/60 rounded-full h-12"
+      />
+    </div>
+  </div>
+</section>
+
 
         {/* FILTRI & CONTENUTO */}
         <section className="py-12 bg-black px-4">

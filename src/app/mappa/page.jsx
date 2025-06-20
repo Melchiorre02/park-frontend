@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import {
   MapIcon,
   SearchIcon,
@@ -16,118 +16,156 @@ import {
   HeartIcon,
   ShareIcon,
   TheaterIcon,
-} from "lucide-react"
-import { Navbar } from "../../components/navbar"
-import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card"
-import { Input } from "../../components/ui/input"
-import { Button } from "../../components/ui/button"
-import { Badge } from "../../components/ui/badge"
-import { MapInteractive } from "../../components/map-interactive"
-import { Footer } from "../../components/footer"
+} from "lucide-react";
+import { Navbar } from "../../components/navbar";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
+import { Badge } from "../../components/ui/badge";
+import { MapInteractive } from "../../components/map-interactive";
+import { Footer } from "../../components/footer";
 
 export default function MappaPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [activeFilter, setActiveFilter] = useState("all")
-  const [highlightedPoints, setHighlightedPoints] = useState([])
-  const [searchResults, setSearchResults] = useState([])
-  const [points, setPoints] = useState([])
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [highlightedPoints, setHighlightedPoints] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [points, setPoints] = useState([]);
 
   useEffect(() => {
     async function fetchPoints() {
       try {
-        const res1 = await fetch("http://localhost:3000/api/attraction-map")
-        const attractions = await res1.json()
+        const res1 = await fetch("http://localhost:3000/api/attraction-map");
+        const attractions = await res1.json();
 
-        const res2 = await fetch("http://localhost:3000/api/show-map")
-        const shows = await res2.json()
+        const res2 = await fetch("http://localhost:3000/api/show-map");
+        const shows = await res2.json();
 
         const combinedPoints = [
-          ...attractions.map((a) => ({ ...a, type: "attraction", globalId: `attr-${a.id}` })),
-          ...shows.map((s) => ({ ...s, type: "shows", globalId: `show-${s.id}` })),
-        ]
+          ...attractions.map((a) => ({
+            ...a,
+            type: "attraction",
+            globalId: `attr-${a.id}`,
+          })),
+          ...shows.map((s) => ({
+            ...s,
+            type: "shows",
+            globalId: `show-${s.id}`,
+          })),
+        ];
 
-        setPoints(combinedPoints)
+        setPoints(combinedPoints);
       } catch (err) {
-        console.error("Errore nel caricamento dei dati:", err)
+        console.error("Errore nel caricamento dei dati:", err);
       }
     }
 
-    fetchPoints()
-  }, [])
+    fetchPoints();
+  }, []);
 
   const filters = [
     { id: "all", label: "Tutto", icon: MapIcon },
     { id: "attractions", label: "Attrazioni", icon: RollercoasterIcon },
     { id: "shows", label: "Spettacoli", icon: TheaterIcon },
     { id: "services", label: "Servizi", icon: InfoIcon },
-  ]
+  ];
 
   const quickStats = [
-    { label: "Attrazioni Aperte", value: "24", icon: RollercoasterIcon, color: "text-red-500" },
-    { label: "Tempo Medio Attesa", value: "15min", icon: ClockIcon, color: "text-blue-500" },
-    { label: "Ristoranti Disponibili", value: "12", icon: UtensilsIcon, color: "text-green-500" },
-    { label: "Visitatori Oggi", value: "8.2K", icon: UsersIcon, color: "text-purple-500" },
-  ]
+    {
+      label: "Attrazioni Aperte",
+      value: "24",
+      icon: RollercoasterIcon,
+      color: "text-red-500",
+    },
+    {
+      label: "Tempo Medio Attesa",
+      value: "15min",
+      icon: ClockIcon,
+      color: "text-blue-500",
+    },
+    {
+      label: "Ristoranti Disponibili",
+      value: "12",
+      icon: UtensilsIcon,
+      color: "text-green-500",
+    },
+    {
+      label: "Visitatori Oggi",
+      value: "8.2K",
+      icon: UsersIcon,
+      color: "text-purple-500",
+    },
+  ];
 
   const handleSearch = (term) => {
-    setSearchTerm(term)
+    setSearchTerm(term);
     if (!term.trim()) {
-      setHighlightedPoints([])
-      setSearchResults([])
-      return
+      setHighlightedPoints([]);
+      setSearchResults([]);
+      return;
     }
     const results = points.filter(
       (point) =>
         point.name.toLowerCase().includes(term.toLowerCase()) ||
         point.description?.toLowerCase().includes(term.toLowerCase()) ||
         point.zone?.toLowerCase().includes(term.toLowerCase()) ||
-        point.type.toLowerCase().includes(term.toLowerCase()),
-    )
-    setSearchResults(results)
-    setHighlightedPoints(results.map((r) => r.id))
-  }
+        point.type.toLowerCase().includes(term.toLowerCase())
+    );
+    setSearchResults(results);
+    setHighlightedPoints(results.map((r) => r.id));
+  };
 
   const handleFilterChange = (filterId) => {
-    setActiveFilter(filterId)
+    setActiveFilter(filterId);
     if (filterId === "all") {
-      setHighlightedPoints([])
-      setSearchResults([])
-      return
+      setHighlightedPoints([]);
+      setSearchResults([]);
+      return;
     }
     const typeMap = {
       attractions: "attraction",
       shows: "shows",
       services: "service",
-    }
-    const filtered = points.filter((point) => point.type === typeMap[filterId])
-    setHighlightedPoints(filtered.map((p) => p.name))
-    setSearchResults(filtered)
-    setSearchTerm("")
-  }
+    };
+    const filtered = points.filter((point) => point.type === typeMap[filterId]);
+    setHighlightedPoints(filtered.map((p) => p.name));
+    setSearchResults(filtered);
+    setSearchTerm("");
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
       <Navbar />
 
       <section className="relative w-full h-[70vh] flex items-center justify-center overflow-hidden bg-black">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute w-full h-full object-cover opacity-30"
-          src="/video/map-hero.mp4"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-black dark:from-gray-900 dark:to-gray-800"></div>
+        {/* Immagine di sfondo */}
+        {/* Immagine di sfondo */}
+  <div className="absolute inset-0 z-0">
+    <img
+      src="/img/mappa.jpg"
+      alt="Sfondo"
+      className="w-full h-full object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90 z-10"></div>
+  </div>
+
+        {/* Contenuto */}
         <div className="relative z-10 text-center space-y-4 max-w-3xl px-4">
           <h1 className="text-4xl sm:text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent animate-gradient">
             Esplora Divertland
           </h1>
-          <p className="text-lg text-gray-300">Naviga tra attrazioni, spettacoli e servizi in tempo reale.</p>
+          <p className="text-lg text-gray-300">
+            Naviga tra attrazioni, spettacoli e servizi in tempo reale.
+          </p>
         </div>
       </section>
 
-      <section className="py-10 bg-black border-t border-white/10">
+      <section className=" bg-black border-t border-white/10">
         <div className="container mx-auto px-4 space-y-8">
           <div className="flex flex-col md:flex-row items-center gap-4">
             <Input
@@ -154,18 +192,7 @@ export default function MappaPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {quickStats.map((s) => (
-              <div
-                key={s.label}
-                className="bg-white/5 p-4 rounded-xl text-center hover:bg-white/10 transition"
-              >
-                <s.icon className={`w-5 h-5 mx-auto mb-1 ${s.color}`} />
-                <div className="text-xl font-bold">{s.value}</div>
-                <div className="text-sm text-gray-400">{s.label}</div>
-              </div>
-            ))}
-          </div>
+          
         </div>
       </section>
 
@@ -195,5 +222,5 @@ export default function MappaPage() {
 
       <Footer />
     </div>
-  )
+  );
 }
