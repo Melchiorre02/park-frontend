@@ -68,15 +68,7 @@ export default function InfoPage() {
         <p className="max-w-2xl mx-auto text-gray-300">
           Tutto il necessario per pianificare la tua visita con facilità.
         </p>
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6">
-          {stats.map((s, i) => (
-            <div key={i} className="p-4 bg-gray-800 rounded-xl shadow">
-              <div className="text-2xl font-semibold">{s.value}</div>
-              <div className="text-sm text-gray-400">{s.label}</div>
-              {/* <div className="text-xs text-emerald-300 mt-1">{s.change}</div> */}
-            </div>
-          ))}
-        </div>
+        
       </div>
 
       <main className="flex-1 container mx-auto px-4 py-16">

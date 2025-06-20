@@ -154,18 +154,7 @@ export default function TicketsPage() {
       <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
         Acquista i tuoi biglietti online e accedi al parco senza fare la coda. Risparmia tempo e denaro!
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="bg-white border border-gray-200 rounded-2xl p-4 shadow hover:shadow-lg transition-all duration-300 hover:scale-105"
-          >
-            <stat.icon className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-            <div className="text-sm text-gray-500">{stat.label}</div>
-          </div>
-        ))}
-      </div>
+      
     </div>
   </div>
 

@@ -160,19 +160,7 @@ export default function PlannerPage() {
     <p className="mt-4 text-base sm:text-xl md:text-2xl text-gray-200">
       Pianifica la tua avventura al parco in modo semplice e intuitivo
     </p>
-    <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
-      {[
-        { label: "Elementi", value: plannedItems.length },
-        { label: "Durata", value: `${Math.floor(totalDuration / 60)}h ${(totalDuration % 60)}m` },
-        { label: "Ottimizzazione", value: "98%" },
-        { label: "Rating", value: "5★" },
-      ].map((s, i) => (
-        <div key={i} className="bg-gray-200/10 backdrop-blur-lg rounded-xl p-2 sm:p-4">
-          <div className="text-xl sm:text-2xl font-bold text-white">{s.value}</div>
-          <div className="mt-1 text-xs sm:text-sm text-gray-300">{s.label}</div>
-        </div>
-      ))}
-    </div>
+    
   </div>
 </section>
 

@@ -93,19 +93,7 @@ export default function ShowsPage() {
       {/* Aggiungi testo se desideri */}
     </p>
 
-    {/* STATISTICHE */}
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-      {stats.map((s) => (
-        <div
-          key={s.label}
-          className="bg-white/10 border border-white/10 p-4 rounded-xl backdrop-blur-sm text-center"
-        >
-          <s.icon className="w-6 h-6 mx-auto mb-1 text-purple-300" />
-          <div className="text-2xl font-bold">{s.value}</div>
-          <div className="text-sm text-purple-200">{s.label}</div>
-        </div>
-      ))}
-    </div>
+    
 
     {/* RICERCA */}
     <div className="relative max-w-md mx-auto">
