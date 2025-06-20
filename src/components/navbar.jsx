@@ -43,7 +43,7 @@ const pathname = location.pathname;
     <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-white/80 dark:bg-gray-950/80 border-b border-green-200/50 dark:border-green-800/50 shadow-lg shadow-green-100/20 dark:shadow-green-900/20">
       <div className="container flex h-20 items-center justify-between px-4 md:px-6">
         {/* Logo Section */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center  gap-3">
           <a href="/" className="flex items-center gap-3 group">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
@@ -53,7 +53,7 @@ const pathname = location.pathname;
               <img
                 src="/img/logo.png"
                 alt="Logo"
-                className="h-30 w-auto" // Regola l'altezza a piacimento
+                className="h-28 w-auto" // Regola l'altezza a piacimento
                 style={{ objectFit: 'contain' }}
               />
               <span className="text-xs text-gray-500 dark:text-gray-400 font-medium"></span>
